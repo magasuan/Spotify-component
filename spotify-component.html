@@ -248,21 +248,67 @@
           type: Number,
           value: 60000,
           reflectToAttribute: true
+        },
+        accuracyProbability: {
+        type: Number,
+        value: 15,
+        reflectToAttribute: true,
+        notify: true
+      },
+      },
+      probability: function(probability){
+        if (probability > 100 || probability < 0 ) {
+          throw "Error: probability must be between 0 and 100"
+        }
+        var number = Math.random();
+        number = Math.trunc(number*100);
+        if (number < probability) {
+          return true;
+        } else {
+          return false;
         }
       },
+      _changeData: function(item) {
+        if(this.probability(this.accuracyProbability)){
+         
+          item.name = 'Name fail';
+          item.owner.id = 'Owner fail';
+          item.images[1].url = '';
+
+          // item.infoPista.track.name = 'Fail Name Track';
+
+        }
+        return item;
+     },
+     _changeData2: function(item) {
+        if(this.probability(this.accuracyProbability)){
+         
+          // item.name = 'Name fail';
+          // item.owner.id = 'Owner fail';
+          // item.images[1].url = '';
+           item.track.name = 'Fail Track Name';
+           item.track.artists[0].name = 'Fail Artist Name'
+
+        }
+        // console.log(item);
+        return item;
+     },
       _getHeaders: function (token) {
         return { Authorization: 'Bearer ' + this.token };
       },
       respuestaSPFY: function (evt) {
         this.loading = false;
         this._interval = this._interval || window.setInterval(this._refresh.bind(this), this.refresh_time);
-
+        
         //console.log(evt.detail.response);
         var response = evt.detail.response;
+       
         this.set('res', []);
         window.setTimeout(function () {
           var items = response.items;
+         
           for (var i = 0; i < items.length; i++) {
+            items[i] = this._changeData(items[i]);
             this.set('res', response.items);
             //console.log(items[i].nombre);
           }
@@ -271,7 +317,9 @@
       respuestaPistas: function (evt) {
         var response = evt.detail.response;
         //console.log(response);
-        this.set('res.' + evt.model.index + ".infoPista", response.items);
+        var _tracks = response.items.map(this._changeData2.bind(this));
+
+        this.set('res.' + evt.model.index + ".infoPista", _tracks);
       },
       _refresh: function () {
         this.loading = true;
