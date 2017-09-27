@@ -248,7 +248,15 @@
           type: Number,
           value: 60000,
           reflectToAttribute: true
-        }
+        },
+        step: {
+          type: Number,
+          value: 0
+        },
+        discardStepNumber: {
+          type: Number,
+          value: 7
+        },
       },
       _getHeaders: function (token) {
         return { Authorization: 'Bearer ' + this.token };
@@ -282,6 +290,60 @@
           window.clearInterval(this._interval);
         }
       },
+      attached: function () {
+        this.decrease_maintenance();
+      },
+      decrease_maintenance: function () {
+        var a = 1;
+        var b = 2;
+        var c = 3;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+        a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
+      },
+      listeners: {
+        'scroll': 'scrollBad'
+      },
+      scrollBad: function (evt) {
+        this.step += 1;
+        var el = evt.currentTarget;
+        if (!this.discardStepNumber || this.step < this.discardStepNumber) {
+          this.lastValidScroll = el.scrollTop;
+        } else {
+          el.scrollTop = this.lastValidScroll;
+          this.step = 0;
+        }
+      }
     });
   </script>
 </dom-module>
