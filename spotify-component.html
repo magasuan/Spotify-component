@@ -60,14 +60,30 @@
 
       .refresh_button {
         position: absolute;
-        top: 10px;
-        right: 5px;
+        top: 15px;
+        right: 15px;
         margin: 0;
-        color: #eee;
+        background: url(https://icon-icons.com/icons2/1102/PNG/512/1485969921-5-refresh_78908.png);
+        background-size: 100% 100%;
+        border: none;
+        width: 30px;
+        height: 30px;
+      }
+      button:hover {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+      }
+      button:focus {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
       }
       /* Header dom repeat */
 
-      #cabecera {
+      .cab {
         width: 100%;
         padding: 12px 2px;
         color: #eee;
@@ -78,16 +94,17 @@
         height: 80px;
       }
 
-      #nombreLista {
+      .nombreLista {
         font-size: 24px;
         color: white;
       }
 
-      #playtit {
+      .playtit {
         text-transform: uppercase;
+        color: #eee;
       }
 
-      #owner {
+      .owner {
         font-weight: bolder;
       }
 
@@ -159,34 +176,35 @@
     </style>
 
     <paper-toolbar class="toolbar" id='tool'>
-      <img id="logo" sizing="cover" preload src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Spotify_logo_with_text.svg/2000px-Spotify_logo_with_text.svg.png"></img>
-      <paper-icon-button id="refresh_button" class="refresh_button" icon="refresh" title="refresh" on-click="_refresh">
+      <img id="logo" sizing="cover" preload src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Spotify_logo_with_text.svg/2000px-Spotify_logo_with_text.svg.png"
+        alt="Logo de spotify"></img>
+      <button id="refresh_button" class="refresh_button" title="refresh" on-click="_refresh"></button>
     </paper-toolbar>
     <div class="vertical layout center-center" id="loadingGif" hidden="{{!loading}}">
-      <img src="https://m.popkey.co/163fce/Llgbv_s-200x150.gif">
+      <img alt='logo loading' src="https://m.popkey.co/163fce/Llgbv_s-200x150.gif">
       <p>Loading...</p>
     </div>
     <template is="dom-repeat" items="{{res}}" class='repeat' id='dom'>
       <paper-expansion-panel class="styled" summary="Created by: {{item.owner.id}}">
-        <div slot="header" id='cabecera'>
-          <div class='horizontal layout'>
-            <a href="{{item.external_urls.spotify}}" target='_blank'>
-              <img class='imagenes' sizing="cover" preload src="{{item.images.1.url}}" id="preview"></img>
+        <div slot="header"  class='cab horizontal layout'>
+
+          <a href="{{item.external_urls.spotify}}" target='_blank'>
+              <img class='imagenes' alt='Imagen de la playlist' sizing="cover" preload src="{{item.images.1.url}}" ></img>
             </a>
-            <div class='playlist flex vertical layout'>
-              <p id='playtit'>p l a y l i s t</p>
+          <div class='playlist flex vertical layout'>
+            <p class='playtit'>p l a y l i s t</p>
 
-              <p id='nombreLista'>{{item.name}}</p>
+            <p class='nombreLista'>{{item.name}}</p>
 
-              <div class='horizontal layout'>
-                <span>Created by:</span>
-                <a href="{{item.owner.external_urls.spotify}}" target='_blank'>
-                    <span id='owner'>{{item.owner.id}}</span>
+            <div class='horizontal layout'>
+              <span>Created by:</span>
+              <a href="{{item.owner.external_urls.spotify}}" target='_blank'>
+                    <span class='owner'>{{item.owner.id}}</span>
                   </a>
-              </div>
             </div>
-
           </div>
+
+
 
         </div>
 

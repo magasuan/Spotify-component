@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="spotify-component.html">
     <link rel="import" href="../spotify-login/spotify-login.html">
 </head>
@@ -16,12 +17,12 @@
             <spotify-login scope="user-read-private user-follow-read user-read-email" client_id="a7b3de70814a40908fd482a8eb525878" on-spotify-logged='_func'></spotify-login>
         </template>
         <template is="dom-if" if="{{token}}">
-            <spotify-component token='{{token}}' refresh_time=60000 </spotify-component>
+            <spotify-component token='{{token}}' refresh_time=60000> </spotify-component>
         </template>
 
         <script>
             var bind = document.querySelector('#binder');
-            bind.token = "";
+            bind.token = "BQCX6xra6cJ3aTfX5GGgjN2BbYTZOxUYmWh6dbKUcuoBB3HkWmwxfY32ZWAT9H--kjeckPz7IqTijTRVxK58qcCBjOfdr95qWdfY-LOivHmlalt_2m3s9l99VjDy9uoXkJng_7zLapyvHIaKo0V0f-P4ZO7XVA6FbWxr6gI";
             bind._func = function (e) {
                 bind.token = e.detail.token;
             }
