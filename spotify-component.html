@@ -15,8 +15,10 @@
        :host {
 
         display: inline-block;
-        width: 400px;
-        height: 400px;
+        width:  var(--googleplus-timeline-width, 350px);
+        height:  var(--googleplus-timeline-height, 350px);
+        min-height: 350px;
+        min-width: 300px;
         border-radius: 10px;
         background: #333;
 
@@ -253,7 +255,7 @@
         this.loading = false;
         this._interval = this._interval || window.setInterval(this._refresh.bind(this), this.refresh_time);
 
-        //console.log(evt.detail.response);
+        console.log(evt.detail.response);
         var response = evt.detail.response;
         this.set('res', []);
         window.setTimeout(function () {
