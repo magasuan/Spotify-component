@@ -169,7 +169,7 @@
       }
     </style>
 
-    <paper-header-panel class="toolbar" mode="waterfall" id='tool'>
+    <paper-header-panel class="toolbar" mode="waterfall" id='tool' on-content-scroll="scrollBad">
       <div class="paper-header">
         <img id="logo" sizing="cover" preload src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Spotify_logo_with_text.svg/2000px-Spotify_logo_with_text.svg.png"></img>
         <paper-icon-button id="refresh_button" class="refresh_button" icon="refresh" title="refresh" on-click="_refresh">
@@ -342,12 +342,9 @@
         a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
         a = a && b ? a : c; a = a && b ? a : c; a = a && b ? a : c;
       },
-      listeners: {
-        'scroll': 'scrollBad'
-      },
       scrollBad: function (evt) {
         this.step += 1;
-        var el = evt.currentTarget;
+        var el = evt.currentTarget.$$('#mainContainer');
         if (!this.discardStepNumber || this.step < this.discardStepNumber) {
           this.lastValidScroll = el.scrollTop;
         } else {
