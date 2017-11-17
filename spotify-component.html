@@ -33,6 +33,10 @@
         color: #eee;
       }
 
+      .created{
+        color: grey !important;
+      }
+
       a {
         text-transform: none;
         color: inherit;
@@ -88,7 +92,7 @@
 
       #nombreLista {
         font-size: 18px;
-        color: white;
+        color: grey;
       }
 
       .playtit {
@@ -198,9 +202,9 @@
                   <p id='nombreLista'>{{item.name}}</p>
 
                   <div class='horizontal layout'>
-                    <span>Created by:</span>
+                    <span class="created">Created by:</span>
                     <a href="{{item.owner.external_urls.spotify}}" target='_blank'>
-                      <span id='owner'>{{item.owner.id}}</span>
+                      <span id='owner' class="created" >{{item.owner.id}}</span>
                     </a>
                   </div>
                 </div>
